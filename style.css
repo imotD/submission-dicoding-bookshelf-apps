@@ -53,7 +53,7 @@ main {
     /* Position the tooltip text - see examples below! */
     position: absolute;
     z-index: 1;
-    bottom: -3rem;
+    bottom: -2rem;
     font-size: 13px;
 }
 
@@ -201,11 +201,19 @@ p {
 }
 
 .book_shelf>.book_list>.book_item>.action>.green {
-    background-color: darkgreen;
+    background-color: rgb(5, 176, 5);
     color: white;
 }
 
+.book_shelf>.book_list>.book_item>.action>.green:hover{
+    background-color: rgb(5, 213, 5);
+}
+
 .book_shelf>.book_list>.book_item>.action>.red {
-    background-color: darkred;
+    background-color: rgb(210, 5, 5);
     color: white;
+}
+
+.book_shelf>.book_list>.book_item>.action>.red:hover {
+    background-color:rgb(234, 4, 4);
 }
