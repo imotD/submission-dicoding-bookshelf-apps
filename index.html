@@ -15,6 +15,7 @@
     />
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
     <header class="head_bar">
       <h2 class="head_bar__title">Bookshelf Apps</h2>
@@ -66,33 +67,68 @@
       <section class="book_shelf">
         <h2>Ongoing</h2>
 
-        <div id="incompleteBookshelfList" class="book_list">
-          <!-- <article class="book_item">
-            <h3>Book Title</h3>
-            <p>Penulis: John Doe</p>
-            <p>Tahun: 2002</p>
-            <div class="action">
-              <button class="green">Done</button>
-              <button class="red">Delete</button>
-            </div>
-          </article> -->
-        </div>
+        <div id="incompleteBookshelfList" class="book_list"></div>
       </section>
 
       <section class="book_shelf">
         <h2>Done</h2>
 
-        <div id="completeBookshelfList" class="book_list">
-          <!-- <article class="book_item">
-            <h3>Book Title</h3>
-            <p>Penulis: John Doe</p>
-            <p>Tahun: 2002</p>
+        <div id="completeBookshelfList" class="book_list"></div>
+      </section>
 
-            <div class="action">
-              <button class="green">Pending</button>
-              <button class="red">Delete</button>
+      <section id="isModalEdit" class="modal">
+        <div class="modal-content card card-edit">
+          <span id="close" class="close">&times;</span>
+          <h2>Update book</h2>
+          <form id="inputUpdateBook">
+            <div class="input">
+              <label for="inputBookTitleUpdate">Title</label>
+              <input
+                id="inputBookTitleUpdate"
+                name="title"
+                type="text"
+                required
+              />
             </div>
-          </article> -->
+            <div class="input">
+              <label for="inputBookAuthorUpdate">Author</label>
+              <input
+                id="inputBookAuthorUpdate"
+                name="author"
+                type="text"
+                required
+              />
+            </div>
+            <div class="input">
+              <label for="inputBookYearUpdate">Year</label>
+              <input
+                id="inputBookYearUpdate"
+                name="year"
+                type="number"
+                required
+              />
+            </div>
+            <div class="input_inline">
+              <label for="inputBookIsCompleteUpdate">Finished Reading</label>
+              <input
+                id="inputBookIsCompleteUpdate"
+                name="isCheckbox"
+                type="checkbox"
+              />
+            </div>
+            <button id="bookSubmitUpdate">Update book</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="isModalDelete" class="modal">
+        <div class="modal-content card card-delete">
+          <span id="close" class="close">&times;</span>
+          <p>Are you sure you want to delete this item?</p>
+          <div class="group">
+            <button id="close" class="grey">Cancel</button>
+            <button id="bookSubmitDelete" class="red">Yes</button>
+          </div>
         </div>
       </section>
     </main>

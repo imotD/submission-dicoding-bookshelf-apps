@@ -1,219 +1,329 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body,
 input,
 button {
-    font-family: "Quicksand", sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
 
 input,
 button {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .head_bar {
-    padding: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    color: #3f3f46;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  color: #3f3f46;
 }
 
 main {
-    max-width: 85rem;
-    width: 100%;
-    display: flex;
-    gap: 20px;
-    margin: 0 auto;
-    padding: 16px;
-
+  max-width: 85rem;
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  margin: 0 auto;
+  padding: 16px;
 }
 
 .tooltip {
-    position: relative;
-    display: block;
-    border-bottom: 1px dotted black;
-    /* If you want dots under the hoverable text */
+  position: relative;
+  display: block;
+  border-bottom: 1px dotted black;
+  /* If you want dots under the hoverable text */
 }
 
 /* Tooltip text */
 .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 100%;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
+  visibility: hidden;
+  width: 100%;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
 
-    /* Position the tooltip text - see examples below! */
-    position: absolute;
-    z-index: 1;
-    bottom: -2rem;
-    font-size: 13px;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+  bottom: -2rem;
+  font-size: 13px;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
-    visibility: visible;
+  visibility: visible;
 }
 
 .container_section {
-    width: 25rem;
+  width: 25rem;
 }
 
 .input_section {
-    display: flex;
-    flex-direction: column;
-    padding: 16px;
-    border: 1px solid rgb(213, 210, 210);
-    border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border: 1px solid rgb(213, 210, 210);
+  border-radius: 10px;
 }
 
-.input_section>h2 {
-    text-align: center;
-    color: #3f3f46;
+.input_section > h2 {
+  text-align: center;
+  color: #3f3f46;
 }
 
-.input_section>form>.input {
-    margin: 8px 0;
+.input_section > form > .input,
+.modal-content > form > .input {
+  margin: 8px 0;
 }
 
-.input_section>form>.tooltip>button {
-    background-color: #3f3f46;
-    color: white;
-    border: 0;
-    border-radius: 5px;
-    display: block;
-    width: 100%;
-    padding: 8px;
-    cursor: pointer;
+.input_section > form > .tooltip > button {
+  background-color: #3f3f46;
+  border-color: red;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  display: block;
+  width: 100%;
+  padding: 8px;
+  cursor: pointer;
 }
 
-.input_section>form>button>span {
-    font-weight: bold;
+.modal-content > form > button {
+  background-color: #3f3f46;
+  border-color: red;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  display: block;
+  width: 100%;
+  padding: 8px;
+  cursor: pointer;
 }
 
-.input_section>form>.input>input {
-    display: block;
-    width: 100%;
-    padding: 8px;
-    border-radius: 5px;
+.input_section > form > button > span,
+.modal-content > form > button > span {
+  font-weight: bold;
 }
 
-
-.input_section>form>.input>label {
-    color: #3f3f46;
-    font-weight: bold;
+.input_section > form > .input > input,
+.modal-content > form > .input > input {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
 }
 
-.input_section>form>.input_inline {
-    margin: 12px 0;
-    display: flex;
-    align-items: center;
+.input_section > form > .input > label,
+.modal-content > form > .input > label {
+  color: #3f3f46;
+  font-weight: bold;
 }
 
-.input_section>form>.input_inline>label {
-    color: #3f3f46;
-    font-weight: bold;
-    margin-right: 10px;
+.input_section > form > .input_inline,
+.modal-content > form > .input_inline {
+  margin: 12px 0;
+  display: flex;
+  align-items: center;
+}
+
+.input_section > form > .input_inline > label,
+.modal-content > form > .input_inline > label {
+  color: #3f3f46;
+  font-weight: bold;
+  margin-right: 10px;
 }
 
 .search_section {
-    margin: 0 0 20px 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 16px;
-    border: 1px solid rgb(213, 210, 210);
-    border-radius: 10px;
+  margin: 0 0 20px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid rgb(213, 210, 210);
+  border-radius: 10px;
 }
 
-.search_section>h2 {
-    color: #3f3f46;
+.search_section > h2 {
+  color: #3f3f46;
 }
 
-.search_section>form {
-    padding: 5px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.search_section > form {
+  padding: 5px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.search_section>form>label {
-    display: flex;
-    align-items: center;
+.search_section > form > label {
+  display: flex;
+  align-items: center;
 }
 
-.search_section>form>input {
-    padding: 8px;
-    border-radius: 5px;
+.search_section > form > input {
+  padding: 8px;
+  border-radius: 5px;
 }
 
-.search_section>form>button {
-    background-color: #3f3f46;
-    color: white;
-    border: 0;
-    border-radius: 5px;
-    padding: 8px;
-    cursor: pointer;
+.search_section > form > button {
+  background-color: #3f3f46;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  padding: 8px;
+  cursor: pointer;
 }
 
 .book_shelf {
-    margin: 0;
-    border: 1px solid rgb(213, 210, 210);
-    padding: 16px;
-    flex-grow: 1;
-    border-radius: 10px;
+  margin: 0;
+  border: 1px solid rgb(213, 210, 210);
+  padding: 16px;
+  flex-grow: 1;
+  border-radius: 10px;
 }
 
-.book_shelf>h2 {
-    color: #3f3f46;
+.book_shelf > h2 {
+  color: #3f3f46;
 }
 
-.book_shelf>.book_list {
-    padding: 16px;
+.book_shelf > .book_list {
+  padding: 16px;
 }
 
-.book_shelf>.book_list>.book_item {
-    padding: 8px 16px 16px 16px;
-    border: 1px solid rgb(213, 210, 210);
-    border-radius: 5px;
-    margin: 10px 0;
+.book_shelf > .book_list > .book_item {
+  padding: 8px 16px 16px 16px;
+  border: 1px solid rgb(213, 210, 210);
+  border-radius: 5px;
+  margin: 10px 0;
 }
 
-.book_shelf>.book_list>.book_item>h3,
+.book_shelf > .book_list > .book_item > h3,
 p {
-    margin: 8px 0;
+  margin: 8px 0;
 }
 
-.book_shelf>.book_list>.book_item>.action>button {
-    border: 0;
-    padding: 5px;
-    margin: 0 5px 0 0;
-    border-radius: 5px;
-    cursor: pointer;
+.book_shelf > .book_list > .book_item > .action > button {
+  border: 0;
+  padding: 5px;
+  margin: 0 5px 0 0;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.book_shelf>.book_list>.book_item>.action>.green {
-    background-color: rgb(5, 176, 5);
-    color: white;
+.book_shelf > .book_list > .book_item > .action > .green {
+  background-color: rgb(5, 176, 5);
+  color: white;
 }
 
-.book_shelf>.book_list>.book_item>.action>.green:hover{
-    background-color: rgb(5, 213, 5);
+.book_shelf > .book_list > .book_item > .action > .green:hover {
+  background-color: rgb(5, 213, 5);
 }
 
-.book_shelf>.book_list>.book_item>.action>.red {
-    background-color: rgb(210, 5, 5);
-    color: white;
+.book_shelf > .book_list > .book_item > .action > .red {
+  background-color: rgb(210, 5, 5);
+  color: white;
 }
 
-.book_shelf>.book_list>.book_item>.action>.red:hover {
-    background-color:rgb(234, 4, 4);
+.book_shelf > .book_list > .book_item > .action > .red:hover {
+  background-color: rgb(234, 4, 4);
+}
+
+.book_shelf > .book_list > .book_item > .action > .orange {
+  background-color: rgb(231, 162, 1);
+  color: white;
+}
+
+.book_shelf > .book_list > .book_item > .action > .orange:hover {
+  background-color: rgb(234, 173, 4);
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 15px;
+  background: white;
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.card-edit {
+  width: 350px;
+  height: 25rem;
+}
+
+.card-delete {
+  width: 350px;
+  height: 150px;
+}
+
+.card-delete > .group > button {
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  width: 100%;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.card-delete > .group > button.red {
+  background-color: red;
+}
+
+.card-delete > .group > button.grey {
+  background-color: grey;
+}
+
+.group {
+  margin-top: 25px;
+  display: flex;
+  gap: 10px;
 }
