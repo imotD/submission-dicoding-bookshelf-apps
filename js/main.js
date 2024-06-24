@@ -1,6 +1,6 @@
 function makeBook(obj, index) {
   const textTitle = document.createElement("h3");
-  textTitle.innerText = "Book " + obj.title;
+  textTitle.innerText = obj.title;
 
   const textAuthor = document.createElement("p");
   textAuthor.innerText = "Author: " + obj.author;
@@ -55,8 +55,9 @@ function makeBook(obj, index) {
   return wrapArticle;
 }
 
-const bookList = [];
+let bookList = [];
 const RENDER_EVENT = "render-bookself";
+const localBooklist = "LOCAL_BOOKLIST";
 
 const submitAction = document.getElementById("inputBook");
 
@@ -78,6 +79,10 @@ submitAction.addEventListener("submit", function (event) {
 
   bookList.push(objAdd);
 
+  const goToStringBooklist = JSON.stringify(bookList);
+
+  localStorage.setItem(localBooklist, goToStringBooklist);
+
   submitAction.reset();
 
   document.dispatchEvent(new Event(RENDER_EVENT));
@@ -96,13 +101,15 @@ document.addEventListener(RENDER_EVENT, function () {
   incompleteBookshelfList.innerHTML = "";
   completeBookshelfList.innerHTML = "";
 
-  for (const [index, item] of bookList.entries()) {
-    const objBook = makeBook(item, index);
+  if (bookList && bookList.length > 0) {
+    for (const [index, item] of bookList.entries()) {
+      const objBook = makeBook(item, index);
 
-    if (item.isComplete) {
-      completeBookshelfList.append(objBook);
-    } else {
-      incompleteBookshelfList.append(objBook);
+      if (item.isComplete) {
+        completeBookshelfList.append(objBook);
+      } else {
+        incompleteBookshelfList.append(objBook);
+      }
     }
   }
 });
@@ -113,6 +120,14 @@ function addBookToCompleted(id) {
   if (bookTarget == null) return;
 
   bookTarget.isComplete = true;
+
+  const getBooklistLocal = getBookListString();
+  const index = findIndexLocalStorage(id);
+
+  getBooklistLocal[index] = bookTarget;
+
+  localStorage.setItem(localBooklist, JSON.stringify(getBooklistLocal));
+
   document.dispatchEvent(new Event(RENDER_EVENT));
 }
 
@@ -122,6 +137,14 @@ function addBookToOngoing(id) {
   if (bookTarget == null) return;
 
   bookTarget.isComplete = false;
+
+  const getBooklistLocal = getBookListString();
+  const index = findIndexLocalStorage(id);
+
+  getBooklistLocal[index] = bookTarget;
+
+  localStorage.setItem(localBooklist, JSON.stringify(getBooklistLocal));
+
   document.dispatchEvent(new Event(RENDER_EVENT));
 }
 
@@ -135,8 +158,24 @@ function findBook(id) {
   return null;
 }
 
+function findIndexLocalStorage(id) {
+  for (const [index, item] of bookList.entries()) {
+    if (item.id === id) {
+      return index;
+    }
+  }
+}
+
+function getBookListString() {
+  const bookListString = localStorage.getItem(localBooklist);
+  const bookList = JSON.parse(bookListString);
+  return bookList;
+}
+
 const modalEdit = document.getElementById("isModalEdit");
-const span = document.getElementById("close");
+const span = document.getElementsByClassName("close");
+const closeBtn = document.getElementById("close");
+const modalDelete = document.getElementById("isModalDelete");
 
 function showEditBook(obj, index) {
   modalEdit.style.display = "block";
@@ -161,6 +200,7 @@ function showEditBook(obj, index) {
         isComplete: form.isCheckbox.checked,
       };
 
+      localStorage.setItem(localBooklist, JSON.stringify(bookList));
       document.dispatchEvent(new Event(RENDER_EVENT));
       event.preventDefault();
       modalEdit.style.display = "none";
@@ -168,8 +208,6 @@ function showEditBook(obj, index) {
     { once: true }
   );
 }
-
-const modalDelete = document.getElementById("isModalDelete");
 
 function showDelete(obj, index) {
   modalDelete.style.display = "block";
@@ -182,15 +220,82 @@ function showDelete(obj, index) {
       bookList.splice(index, 1);
 
       document.dispatchEvent(new Event(RENDER_EVENT));
-      event.preventDefault();
 
+      localStorage.setItem(localBooklist, JSON.stringify(bookList));
+
+      event.preventDefault();
       modalDelete.style.display = "none";
     },
     { once: true }
   );
 }
 
-span.onclick = function () {
+span[0].onclick = function () {
   modalEdit.style.display = "none";
+};
+
+span[1].onclick = function () {
   modalDelete.style.display = "none";
 };
+
+closeBtn.onclick = function () {
+  modalDelete.style.display = "none";
+};
+
+const submitActionSearch = document.getElementById("searchBook");
+
+submitActionSearch.addEventListener("submit", function (event) {
+  const inputTitle = document
+    .getElementById("searchBookTitle")
+    .value.toLowerCase();
+
+  const incompleteBookshelfList = document.getElementById(
+    "incompleteBookshelfList"
+  );
+
+  const completeBookshelfList = document.getElementById(
+    "completeBookshelfList"
+  );
+
+  incompleteBookshelfList.innerHTML = "";
+  completeBookshelfList.innerHTML = "";
+
+  const getBooklistLocal = getBookListString();
+
+  const filteredTitles = getBooklistLocal.filter((item) => {
+    if (item.title.toLowerCase().includes(inputTitle)) {
+      return item;
+    }
+  });
+
+  if (filteredTitles.length > 0) {
+    for (let i = 0; i < filteredTitles.length; i++) {
+      const objBook = makeBook(filteredTitles[i], i);
+
+      if (filteredTitles[i].isComplete) {
+        completeBookshelfList.append(objBook);
+      } else {
+        incompleteBookshelfList.append(objBook);
+      }
+    }
+  } else {
+    incompleteBookshelfList.innerHTML = "<p>No articles found.</p>";
+  }
+
+  submitActionSearch.reset();
+
+  event.preventDefault();
+});
+
+window.addEventListener("load", function () {
+  if (typeof Storage !== "undefined") {
+    // inisialisasi semua item web storage yang kita akan gunakan jika belum ada
+
+    if (localStorage.getItem(localBooklist) !== null) {
+      bookList = getBookListString();
+      document.dispatchEvent(new Event(RENDER_EVENT));
+    }
+  } else {
+    alert("Browser yang Anda gunakan tidak mendukung Web Storage");
+  }
+});
