@@ -73,7 +73,7 @@ submitAction.addEventListener("submit", function (event) {
     id: +new Date(),
     title: inputTitle,
     author: inputAuthor,
-    year: inputYear,
+    year: Number(inputYear),
     isComplete: isCheckComplite,
   };
 
