@@ -196,7 +196,7 @@ function showEditBook(obj, index) {
         id: obj.id,
         title: form.title.value,
         author: form.author.value,
-        year: form.year.value,
+        year: parseInt(form.year.value),
         isComplete: form.isCheckbox.checked,
       };
 
